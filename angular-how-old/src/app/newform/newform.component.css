@@ -1,0 +1,26 @@
+label, input, select, form, button{
+    display:block;
+    width:100%;
+
+}
+form{
+    max-width:500px;
+    margin:auto;
+}
+form,
+form input,
+form select,
+form button{
+    box-sizing:border-box;
+}
+label{margin-top:1rem;}
+button{margin-top:2rem;}
+
+form > div:not(.form--element){
+    display:flex;
+}
+form > div:not(.form--element) > div{
+    flex:auto;
+}
+
+.error{color:red;}

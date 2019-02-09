@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+    margin:0;
+    box-sizing:border-box;
+    padding:0;
+
+}
+body{padding:.5rem;}
+.listing{
+    margin:auto;
+    max-width:500px;
+    border:1px solid black;
+    /*display:flex;
+    flex-direction: row;
+    justify-content: space-between;*/
+    margin-bottom:1rem;
+    padding:1rem;
+}
+h2{margin:0;}
+
+.listing{
+    display:grid;
+    grid-template-areas: "name result"
+                       "date date";
+  /* template may cause word wrap issues */                     
+                       /*
+  grid-template-columns:5fr 1fr;
+  */
+
+}
+.listing .name{
+    grid-area: name;
+}
+.listing .date{
+    grid-area: date;
+}
+.listing .result{
+    grid-area: result;
+    text-align: right;
+}
+/*
+.listing > div{
+    border:1px solid black;
+}
+*/
+.listing .name,
+.listing .result{
+    place-self: center stretch;
+}

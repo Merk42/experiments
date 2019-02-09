@@ -1,0 +1,14 @@
+<h1>Saved Listings:</h1>
+<div *ngIf="birthdays.length == 0">None saved</div>
+<div class="listing" *ngFor="let person of birthdays">
+  <div class="name">
+      <h2>{{person.name}}</h2>
+  </div>
+  <div class="date">
+      <span>{{person.birthdate}}</span>
+  </div>
+  <div class="result">
+      <span>{{person.output}}</span>
+  </div>
+</div>
+<a [routerLink]="['/add']">add</a>

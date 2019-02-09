@@ -1,0 +1,69 @@
+
+<ng-container *ngIf="phase == 0">
+  <div class="choosingLib">
+    <details *ngFor="let book of books">
+      <summary><h2>{{book.Title}}</h2></summary>
+      <ng-container *ngFor="let storyOpt of book.Stories"> 
+        <span (click)="phase = 1;storyID=storyOpt;makeIt(storyOpt)" >{{storyTitle (storyOpt)}}</span>
+      </ng-container>
+    </details>
+  </div>
+<!--
+  <div class="choosingLib">
+    
+
+
+    <label *ngFor="let storyOpt of allStories" ><input type="radio" value="{{storyOpt.id}}" name="chosenStory" [(ngModel)]="storyID"/><span>{{storyOpt.Title}}</span></label>
+
+
+    <button (click)="phase = 1;makeIt(storyID)">Lib it!</button>
+  </div>
+-->
+
+
+</ng-container>
+<!--
+<input type="number" min="0" [(ngModel)]="entryID"/>
+-->
+
+<h1 *ngIf="phase == 1 || phase == 2">{{storyTitle(storyID)}}</h1>
+
+
+<ng-container *ngIf="phase == 1">
+  <div class="enteringLib">
+    <!--
+ <label *ngIf="currentlyEnteringIndex < selectedStoryBlanks.length">
+  <input type="text" #enteredLib />
+  <span> {{selectedStoryBlanks[currentlyEnteringIndex]}}</span>
+  </label>
+  <button *ngIf="currentlyEnteringIndex < selectedStoryBlanks.length"  (click)="addLib(enteredLib.value);enteredLib.value=''">next</button>
+  -->
+
+
+   <div *ngIf="currentlyEnteringIndex < selectedStoryBlanks.length">
+  <input autofocus type="text" #enteredLib (keyup.enter)="addLib(enteredLib.value);enteredLib.value=''" />
+  <span> {{selectedStoryBlanks[currentlyEnteringIndex]}}</span>
+  <button (click)="addLib(enteredLib.value);enteredLib.value=''">next</button>
+  <progress value="{{currentlyEnteringIndex+1}}" max="{{selectedStoryBlanks.length}}"></progress>
+  </div>
+  
+
+
+
+  <button *ngIf="currentlyEnteringIndex == selectedStoryBlanks.length" (click)="readIt()">done</button>
+  </div>
+
+   <button id="backBtn" (click)="reset()">back to stories</button>
+</ng-container>
+
+<ng-container *ngIf="phase == 2">
+  <div class="readingLib">
+    <p><ng-container *ngFor="let parts of storyArr; let i = index">{{parts}}<span *ngIf="i < entryArr.length" class="madlib" [attr.data-ex]="selectedStoryBlanks[i]">{{entryArr[i]}}</span></ng-container></p>
+  <button (click)="reset()">Lib Another!</button>
+  </div>
+</ng-container>
+<!--
+<app-read-story [storyID]="storyID" [entryID]="entryID"></app-read-story>
+<hr>
+<app-write-story></app-write-story>
+-->

@@ -1,0 +1,1 @@
+<p><span *ngFor="let defaults of prepareStory(storyID);let i = index">{{defaults}}<span *ngIf="i < prepareEntry(storyID, entryID).length" class="madlib" [attr.data-ex]="prepareEntry(storyID, entryID)[i].type">{{prepareEntry(storyID, entryID)[i].entry}}</span></span></p>

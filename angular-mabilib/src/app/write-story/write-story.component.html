@@ -1,0 +1,12 @@
+<!--<input type="radio" name="progress" checked/>
+  <div class="libForm">
+      <input type="text"/>
+      <label for="0">first</label>
+  </div>
+  -->
+  <label>
+  <input type="text" #enteredLib />
+  <span> {{selectedStoryBlanks[currentlyEnteringIndex]}}</span>
+  </label>
+  <button *ngIf="currentlyEnteringIndex < selectedStoryLength" (click)="nextOne()">next</button>
+  <button *ngIf="currentlyEnteringIndex == selectedStoryLength">done</button>

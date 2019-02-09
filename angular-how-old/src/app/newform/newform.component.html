@@ -1,0 +1,100 @@
+<h1>Add Listing:</h1>
+<!--
+
+  <input id="name" class="form-control"
+      formControlName="name" required >
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="name.errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors.forbiddenName">
+    Name cannot be Bob.
+  </div>
+</div>
+-->
+<form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm);userForm.reset()">
+  <div class="form--element">
+    <label for="name">name</label>
+    <input type="text"  name="name" [(ngModel)]="name"  #name="ngModel" id="name" required/>
+    <div *ngIf="name.errors.required">
+        Name is required.
+      </div>
+  </div>
+<div>
+  <div class="form--element">
+    <label for="month">month</label>
+    <select [(ngModel)]="month"  #month="ngModel" name="month" id="month" required>
+      <option value="0">idk</option>
+      <option *ngFor="let month of months" [ngValue]="month.value">
+      {{ month.copy }}
+    </option>
+    </select>
+  </div>
+  <div class="form--element">
+    <label for="day">day</label>
+    <select [(ngModel)]="day" #day="ngModel" name="day" id="day" required>
+      <option value="0">idk</option>
+      <option value="01">1</option>
+      <option value="02">2</option>
+      <option value="03">3</option>
+      <option value="04">4</option>
+      <option value="05">5</option>
+      <option value="06">6</option>
+      <option value="07">7</option>
+      <option value="08">8</option>
+      <option value="09">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="21">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>        
+      <option value="31">31</option>
+    </select>
+  </div>
+  <div class="form--element">
+    <label for="year">year</label>
+    <select [(ngModel)]="year" #year="ngModel" name="year" id="year" required>
+      <option value="0">idk</option>
+      <option *ngFor="let year of years" [ngValue]="year">
+        {{ year }}
+    </option>
+    </select>
+  </div>
+</div>
+<!--
+  <button (click)="pushValue(userName, year, month, day)">ok</button>
+-->
+<button type="submit">OK?</button>
+  <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">Fill out all fields</div>
+  <pre>
+    {{userName}}
+      {{month}}
+      {{day}}
+      {{year}}
+      {{year}}-{{month}}-{{day}}
+  </pre>
+
+</form>
+<a [routerLink]="['/view']">view</a>

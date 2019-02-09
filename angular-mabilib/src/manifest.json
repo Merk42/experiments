@@ -1,0 +1,16 @@
+{  
+  "short_name": "MadLibs",
+  "name": "MadLibs",
+  "start_url": "./",  
+  "icons": [
+    {  
+      "src": "assets/madlibs-256.png",  
+      "sizes": "256x256",  
+      "type": "image/png"  
+    }
+  ],  
+  "background_color": "#E8E4DF",
+  "theme_color": "#A9D8D7", 
+  "display": "standalone",  
+  "orientation": "portrait"  
+}

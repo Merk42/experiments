@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+body{font-family:sans-serif;}
+/*
+span.madlib{
+    position: relative;
+    border-bottom:1px solid black;
+    display:inline;
+    font-family:cursive;
+}
+span.madlib::before{
+    content:attr(data-ex);
+    position:absolute;
+    left:0;
+    right:0;
+    text-align: center;
+    top:1.75em;
+    font-size:75%;
+    font-family:serif;
+    color:gray;
+}
+*/
+#styleDebugging,
+.styleDebug app-root{
+    display: none;
+}
+.styleDebug #styleDebugging{
+    display: block;
+}
+
+
+main{
+    max-width:50rem;
+    display: block;
+    margin: auto;
+}
+
+
+/* 
+input and madlib (content) to be same
+*/
+
+/* 
+input+span (label?) and madlib::after to be same
+*/
+
+.enteringLib input{
+    font-size:1rem; /* for mobile */
+    display:block;
+    width:100%;
+}
+
+.enteringLib input+span,
+.enteringLib label,
+.madlib::after{
+	font-size:.75rem;
+	font-family:cursive;
+    font-style:italic;
+    text-align: center;
+}
+button{
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 73px;
+    border-style: solid;
+    border-width: 4px 0px 4px 0px;
+    border-bottom-color: rgba(0,0,0,.5);
+    border-top-color: rgba(255,255,255,.5);
+    /* make a var?? */
+    /*
+    background-color: yellow;
+    */
+}
+p{
+	line-height:2.5rem;
+}
+h1{
+    text-align:center;
+}
+
+summary {
+  display: block;
+}
+
+  summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: '\25B6';
+  padding-right: 0.5em;
+  float:left;
+}
+
+details[open] > summary::before {
+  content: '\25BC';
+}
+
+
+.madlib{
+	display:inline-block;
+	transform:translateY( calc(1rem + 2px) );
+    line-height:1;
+    text-align: center;
+}
+.madlib::after{
+	margin-top:.25rem;
+	content:attr(data-ex);
+	display:block;
+	border-top:1px solid black;
+	padding:0 .25rem;
+}
+/*
+.choosingLib{
+    text-align: center;
+}
+*/
+.choosingLib input[type="radio"]{
+    text-indent:-9999px;
+    visibility: hidden;
+    position:fixed;opacity:0
+}
+.choosingLib input[type="radio"]:checked+span{
+    font-weight: bold;
+}
+.choosingLib button,
+.choosingLib span{
+    display:block;
+    margin:auto;
+}
+
+.choosingLib span{
+    text-transform: uppercase;
+    margin-bottom:.75rem;
+}
+
+.choosingLib{
+    margin-bottom:2rem;
+}
+#backBtn{
+    position: fixed;
+    bottom:0;
+    left: 50%;
+transform: translateX(-50%);
+
+}
+
+.enteringLib input,
+.enteringLib button,
+.enteringLib span{
+    display:block;
+    margin:auto;
+}
+.enteringLib input{
+    border-width:0 0 1px 0;
+    border-color:black;
+}
+.enteringLib span{
+    text-transform: uppercase;
+    font-size:.75rem;
+    margin-bottom:.75rem;
+}
+progress{
+    width:100%
+}
+.readingLib button{
+    margin-top:2rem;
+    display:block;
+}
+
+.seamless .madlib{
+    transform: none;
+}
+.seamless .madlib::after{
+    display: none;
+}
+.seamless p{
+    line-height: 1.75rem;
+}
