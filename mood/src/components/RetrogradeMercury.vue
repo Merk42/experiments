@@ -23,6 +23,7 @@ export default {
       .get('https://mercuryretrogradeapi.com')
       .then(response => {
         this.info = response.data.is_retrograde;
+        this.$emit('retrograde', this.info )
       })
   }
 }

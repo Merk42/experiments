@@ -1,9 +1,6 @@
 <template>
     <div>Is it a full moon?
-      
-      <pre>{{currMonth}}</pre>
-      <pre>{{currDate}}</pre>
-      <pre>{{info}}</pre>
+      <p>{{isFull}}</p>
     </div>
 </template>
 
@@ -17,28 +14,31 @@ export default {
   },
   data () {
     return {
-      info: null
+      info: null,
+      phaseName: String,
+      isFull: Boolean
     }
   },
-  updated () {
-    axios
-      .get('http://icalendar37.net/lunar/api/?lang=en&month=' + currMonth + '&year=2019&size=50')
+  created(){
+    this.someData();
+ },
+  methods: {    
+    someData: function() {
+      var d = new Date();
+      var date = d.getDate();
+      var month = d.getMonth()+1;
+      axios
+      .get('http://icalendar37.net/lunar/api/?lang=en&month=' + month + '&year=2019&size=50')
       .then(response => {
         this.info = response.data;
+        this.phaseName = this.info.phase[date].phaseName;
+        if (this.phaseName === "Full moon") {
+          this.isFull = true;
+        } else {
+          this.isFull = false;
+        }
+        this.$emit('fullmoon', this.isFull)
       })
-  },
-  computed: {
-    now: function () {
-      return Date.now()
-    },
-    currMonth: function (){
-             var d = new Date();
-
-      return d.getMonth()+1;
-    },
-    currDate: function (){
-       var d = new Date();
-      return d.getDate();
     }
   }
 }

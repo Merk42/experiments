@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <FullMoon></FullMoon>
-    <RetrogradeMercury></RetrogradeMercury>
+    <FullMoon @fullmoon="checkFull"></FullMoon>
+    <RetrogradeMercury @retrograde="checkRetrograde"></RetrogradeMercury>
     <TimeOfMonth></TimeOfMonth>
+    <h1>threat level {{level}}</h1>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import FullMoon from './components/FullMoon.vue'
 import RetrogradeMercury from './components/RetrogradeMercury.vue'
 import TimeOfMonth from './components/TimeOfMonth.vue'
@@ -17,10 +15,40 @@ import TimeOfMonth from './components/TimeOfMonth.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     FullMoon,
     RetrogradeMercury,
     TimeOfMonth
+  },
+  data () {
+    return {
+      isPMS: Boolean,
+      isRetrograde: Boolean,
+      isFull: Boolean,
+      level: Number
+    }
+  },
+  methods: {
+    checkFull (value) {
+      this.isFull = value
+    },
+    checkRetrograde (value) {
+      this.isRetrograde = value
+      return value;
+    },
+    threatLevel() {
+      this.level = 0;
+      console.log(this.isRetrograde);
+      console.log(this.checkRetrograde());
+      if (this.isRetrograde){
+        this.level = this.level+1
+      }
+      if (this.isFull){
+        this.level = this.level+1
+      }
+    }
+  },
+  mounted(){
+    this.threatLevel();
   }
 }
 </script>
