@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="CSSStyle"> 
     <div v-if="!configuring">
       <FullMoon @fullEmit="checkFull"></FullMoon>
-      {{threatLevel}}
+      {{threatLevel}} out of {{maxLevel}}
     </div>
     <Config v-if="configuring"></Config>
     <button v-on:click="toggleConfig()">config</button>
@@ -22,8 +22,10 @@ export default {
   },
   data () {
     return {
+      CSSStyle: String,
       configuring: false,
       threatLevel: Number,
+      maxLevel: Number,
       isFull: Boolean,
       defaultSettings: {
         'fullmoon':1,
@@ -42,7 +44,9 @@ export default {
     },
     countDumb(){
       this.threatLevel = 0;
-      console.log('using settings of: ', this.settings());
+      this.maxLevel = parseInt(this.settings().fullmoon) + parseInt(this.settings().retrograde) + parseInt(this.settings().pms);
+      
+
       console.log('is it dumb?')
       console.log(this.isFull)
       if (this.isFull){
@@ -50,6 +54,8 @@ export default {
         this.threatLevel += parseInt(this.settings().fullmoon);
       }
 
+
+      this.threatStyle(this.threatLevel, this.maxLevel);
     },
     toggleConfig(){
       this.configuring = !this.configuring;
@@ -61,6 +67,23 @@ export default {
       } else {
         return JSON.parse(localStorage.getItem('settings'));
       }
+    },
+    threatStyle(threat, max){
+      let percent = threat/max;
+      let cssclass = 'fine';
+      if (percent > 0){
+        cssclass = 'low';
+      }
+      if (percent > .3){
+        cssclass = 'med';
+      }
+      if (percent > .6){
+        cssclass = 'high';
+      }
+      if (percent == 1){
+        cssclass = 'worst';
+      }
+      this.CSSStyle = cssclass;
     }
   },
   mounted(){
