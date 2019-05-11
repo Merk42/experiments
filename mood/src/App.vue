@@ -1,65 +1,70 @@
 <template>
   <div id="app">
-    <FullMoon @fullmoon="checkFull"></FullMoon>
-    <RetrogradeMercury @retrograde="checkRetrograde"></RetrogradeMercury>
-    <TimeOfMonth></TimeOfMonth>
-    <h1>threat level {{level}}</h1>
+    <div v-if="!configuring">
+      <FullMoon @fullEmit="checkFull"></FullMoon>
+      {{threatLevel}}
+    </div>
+    <Config v-if="configuring"></Config>
+    <button v-on:click="toggleConfig()">config</button>
   </div>
 </template>
 
 <script>
+
 import FullMoon from './components/FullMoon.vue'
-import RetrogradeMercury from './components/RetrogradeMercury.vue'
-import TimeOfMonth from './components/TimeOfMonth.vue'
+import Config from './components/Config.vue'
 
 export default {
   name: 'app',
   components: {
     FullMoon,
-    RetrogradeMercury,
-    TimeOfMonth
+    Config
   },
   data () {
     return {
-      isPMS: Boolean,
-      isRetrograde: Boolean,
+      configuring: false,
+      threatLevel: Number,
       isFull: Boolean,
-      level: Number
+      defaultSettings: {
+        'fullmoon':1,
+        'retrograde':1,
+        'pms':1
+      }
     }
   },
   methods: {
-    checkFull (value) {
-      this.isFull = value
+
+    checkFull ($event) {
+      // this.isRetrograde = value
+      // return value;
+      console.log('event is', $event)
+      this.isFull = $event
     },
-    checkRetrograde (value) {
-      this.isRetrograde = value
-      return value;
-    },
-    threatLevel() {
-      this.level = 0;
-      console.log(this.isRetrograde);
-      console.log(this.checkRetrograde());
-      if (this.isRetrograde){
-        this.level = this.level+1
-      }
+    countDumb(){
+      this.threatLevel = 0;
+      console.log('using settings of: ', this.settings());
+      console.log('is it dumb?')
+      console.log(this.isFull)
       if (this.isFull){
-        this.level = this.level+1
+        console.log('yes')
+        this.threatLevel += parseInt(this.settings().fullmoon);
+      }
+
+    },
+    toggleConfig(){
+      this.configuring = !this.configuring;
+    },
+    settings(){
+      // maybe this should be in computed?
+      if (localStorage.getItem('settings') == null){
+        return defaultSettings
+      } else {
+        return JSON.parse(localStorage.getItem('settings'));
       }
     }
   },
   mounted(){
-    this.threatLevel();
+    this.countDumb();
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

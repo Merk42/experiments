@@ -5,22 +5,22 @@
 import axios from 'axios'
 
 export default {
-  name: 'FullMoon',
+  name: 'DumbEmergency',
   data () {
     return {
         isFull: Boolean
     }
   },
   created(){
-    this.isMoonFull();
-    // this.isHardcoded();
+    // this.someData();
+    this.isEmergencyHappening();
  },
   methods: {    
-    isHardcoded: function() {
+    isEmergencyHappening: function() {
         console.log('emitting from child')
-        this.$emit('fullEmit', false)
+        this.$emit('dumbEmit', false)
     },
-    isMoonFull: function() {
+    someData: function() {
       var d = new Date();
       var date = d.getDate();
       var month = d.getMonth()+1;
@@ -36,7 +36,7 @@ export default {
         }
         console.log('going to emit ', this.isFull)
         // this.$emit('fullmoon', true)
-        this.$emit('fullEmit', false)
+        this.$emit('dumbEmit', this.isFull)
       })
     }
   }
