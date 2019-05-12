@@ -1,8 +1,9 @@
 <template>
   <div id="app" v-bind:class="CSSStyle"> 
     <div v-if="!configuring">
+      <h1>Level: {{CSSStyle}}</h1>
+      <p>({{threatLevel}} out of {{maxLevel}})</p>
       <FullMoon @fullEmit="checkFull"></FullMoon>
-      {{threatLevel}} out of {{maxLevel}}
     </div>
     <Config v-if="configuring"></Config>
     <button v-on:click="toggleConfig()">config</button>
@@ -42,13 +43,13 @@ export default {
       console.log('event is', $event)
       this.isFull = $event
     },
-    countDumb(){
+    async countDumb(){
       this.threatLevel = 0;
       this.maxLevel = parseInt(this.settings().fullmoon) + parseInt(this.settings().retrograde) + parseInt(this.settings().pms);
       
 
       console.log('is it dumb?')
-      console.log(this.isFull)
+      console.log(await this.isFull)
       if (this.isFull){
         console.log('yes')
         this.threatLevel += parseInt(this.settings().fullmoon);
@@ -63,7 +64,7 @@ export default {
     settings(){
       // maybe this should be in computed?
       if (localStorage.getItem('settings') == null){
-        return defaultSettings
+        return this.defaultSettings
       } else {
         return JSON.parse(localStorage.getItem('settings'));
       }
@@ -75,7 +76,7 @@ export default {
         cssclass = 'low';
       }
       if (percent > .3){
-        cssclass = 'med';
+        cssclass = 'medium';
       }
       if (percent > .6){
         cssclass = 'high';
@@ -91,3 +92,26 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#app{
+  height:100vh
+}
+#app.low{
+  background-color:lightgreen;
+}
+#app.medium{
+  background-color:yellow;
+}
+#app.high{
+  background-color:red;
+}
+#app.worst{
+  background-color:darkred;
+  color:#FFF
+}
+button{
+  position:fixed;
+  bottom:0;
+}
+</style>

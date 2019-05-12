@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="background-color:#FFF" class="config">
         <p>On a scale of 1 to 10, how much do the following affect you?</p>
         <div>
             <label>Full Moon</label>
@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style scoped>
+.config{
+    height:100vh;
+}
 label{
     display:block;
 }
