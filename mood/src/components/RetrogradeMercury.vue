@@ -1,30 +1,31 @@
 <template>
     <div>Is Mercury in Retrograde?
-      <p>{{info}}</p>
+      <span v-if="isRetrograde">yes</span>
+      <span v-if="!isRetrograde">no</span>
     </div>
-    
 </template>
-
 <script>
 import axios from 'axios'
 
 export default {
-  name: 'RetrogradeMercury',
-  props: {
-    msg: String
-  },
+  name: 'FullMoon',
   data () {
     return {
-      info: null
+        isRetrograde: Boolean
     }
   },
-  mounted () {
-    axios
-      .get('https://mercuryretrogradeapi.com')
-      .then(response => {
-        this.info = response.data.is_retrograde;
-        this.$emit('retrograde', this.info )
-      })
+  async created(){
+    // this.isMoonFull();
+     // this.isHardcoded();
+    await this.isMercuryRetrograde();
+ },
+  methods: {    
+    isMercuryRetrograde: async function() {
+
+      let response = await axios.get('https://mercuryretrogradeapi.com')
+      this.isRetrograde = response.data.is_retrograde;
+      this.$emit('retrogradeEmit', this.isRetrograde)
+    }
   }
 }
 </script>

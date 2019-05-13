@@ -3,7 +3,10 @@
     <div v-if="!configuring">
       <h1>Level: {{CSSStyle}}</h1>
       <p>({{threatLevel}} out of {{maxLevel}})</p>
+      
       <FullMoon @fullEmit="checkFull"></FullMoon>
+      
+      <RetrogradeMercury @retrogradeEmit="checkRetrograde"></RetrogradeMercury>
     </div>
     <Config v-if="configuring"></Config>
     <button v-on:click="toggleConfig()">config</button>
@@ -13,12 +16,14 @@
 <script>
 
 import FullMoon from './components/FullMoon.vue'
+import RetrogradeMercury from './components/RetrogradeMercury.vue'
 import Config from './components/Config.vue'
 
 export default {
   name: 'app',
   components: {
     FullMoon,
+    RetrogradeMercury,
     Config
   },
   data () {
@@ -28,6 +33,7 @@ export default {
       threatLevel: Number,
       maxLevel: Number,
       isFull: Boolean,
+      isRetrograde: Boolean,
       defaultSettings: {
         'fullmoon':1,
         'retrograde':1,
@@ -42,14 +48,22 @@ export default {
       // return value;
       console.log('event is', $event)
       this.isFull = $event
+      this.countDumb();
     },
-    async countDumb(){
+    checkRetrograde ($event) {
+      // this.isRetrograde = value
+      // return value;
+      console.log('event is', $event)
+      this.isFull = $event
+      this.countDumb();
+    },
+    countDumb(){
       this.threatLevel = 0;
       this.maxLevel = parseInt(this.settings().fullmoon) + parseInt(this.settings().retrograde) + parseInt(this.settings().pms);
       
 
       console.log('is it dumb?')
-      console.log(await this.isFull)
+      console.log(this.isFull)
       if (this.isFull){
         console.log('yes')
         this.threatLevel += parseInt(this.settings().fullmoon);
@@ -88,7 +102,6 @@ export default {
     }
   },
   mounted(){
-    this.countDumb();
   }
 }
 </script>
