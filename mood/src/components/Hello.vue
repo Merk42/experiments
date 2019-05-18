@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-bind:class="CSSStyle"> 
     <header v-bind:class="{ menu: configuring }">
-      <button v-on:click="toggleConfig()">menu</button>
+      <button v-on:click="toggleConfig()" id="menuButton">menu</button>
       <h1>Level: {{CSSStyle}}</h1>
     </header>
     <main>

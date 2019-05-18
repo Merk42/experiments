@@ -19,8 +19,8 @@ body{
 p, h1{
   margin:0
 }
-h1 {
-  margin:1rem 0;
+header{
+  padding:1rem 0;
 }
 label{
   font-family:sans-serif
@@ -41,6 +41,12 @@ label{
   background-color:darkred;
   color:#FFF
 }
+
+#menuButton{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 aside{
     position:fixed;
     top:0;
@@ -48,6 +54,8 @@ aside{
     
     transform:translateX(-100%);
     transition:transform .5s;
+
+    max-width: 80vw;
 }
 
 .menu~aside{
