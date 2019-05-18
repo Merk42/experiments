@@ -1,15 +1,18 @@
 <template>
   <div id="app" v-bind:class="CSSStyle"> 
-    <div v-if="!configuring">
+    <header v-bind:class="{ menu: configuring }">
+      <button v-on:click="toggleConfig()">menu</button>
       <h1>Level: {{CSSStyle}}</h1>
+    </header>
+    <main>
       <p>({{threatLevel}} out of {{maxLevel}})</p>
-      
       <FullMoon @fullEmit="checkFull"></FullMoon>
-      
       <RetrogradeMercury @retrogradeEmit="checkRetrograde"></RetrogradeMercury>
-    </div>
-    <Config v-if="configuring"></Config>
-    <button v-on:click="toggleConfig()">config</button>
+    </main>
+    <div id="closeMenu" v-on:click="toggleConfig()"></div>
+    <aside>
+      <Config></Config>
+    </aside>
   </div>
 </template>
 

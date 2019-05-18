@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <header>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -45,8 +41,34 @@ label{
   background-color:darkred;
   color:#FFF
 }
-button{
-  position:fixed;
-  bottom:0;
+aside{
+    position:fixed;
+    top:0;
+    bottom:0;
+    
+    transform:translateX(-100%);
+    transition:transform .5s;
+}
+
+.menu~aside{
+    transform:translateX(0);
+}
+
+#closeMenu{
+    background-color:#000;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    opacity:0;
+    pointer-events:none;
+    
+    transition:opacity .5s;
+}
+
+.menu~#closeMenu{
+    opacity:.5;
+    pointer-events:auto;
 }
 </style>
