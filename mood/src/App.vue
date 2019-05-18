@@ -23,6 +23,9 @@ body{
 p, h1{
   margin:0
 }
+h1 {
+  margin:1rem 0;
+}
 label{
   font-family:sans-serif
 }
