@@ -8,6 +8,7 @@
       <p>({{threatLevel}} out of {{maxLevel}})</p>
       <FullMoon @fullEmit="checkFull"></FullMoon>
       <RetrogradeMercury @retrogradeEmit="checkRetrograde"></RetrogradeMercury>
+      <TimeOfMonth @pmsEmit="checkPMS"></TimeOfMonth>
     </main>
     <div id="closeMenu" v-on:click="toggleConfig()"></div>
     <aside>
@@ -19,12 +20,14 @@
 <script>
 import FullMoon from './FullMoon.vue'
 import RetrogradeMercury from './RetrogradeMercury.vue'
+import TimeOfMonth from './TimeOfMonth.vue'
 import Config from './Config.vue'
 export default {
   name: 'hello',
   components: {
     FullMoon,
     RetrogradeMercury,
+    TimeOfMonth,
     Config
   },
   data () {
@@ -36,6 +39,7 @@ export default {
       maxLevel: Number,
       isFull: Boolean,
       isRetrograde: Boolean,
+      isPMS: Boolean,
       defaultSettings: {
         'fullmoon': 1,
         'retrograde': 1,
@@ -56,6 +60,13 @@ export default {
       // return value;
       console.log('event is', $event)
       this.isFull = $event
+      this.countDumb()
+    },
+    checkPMS ($event) {
+      // this.isRetrograde = value
+      // return value;
+      console.log('event is', $event)
+      this.isPMS = $event
       this.countDumb()
     },
     countDumb () {
