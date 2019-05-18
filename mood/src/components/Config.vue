@@ -25,38 +25,38 @@ export default {
   name: 'Config',
   data () {
     return {
-        fullMoonEffect: Number,
-        retrogradeEffect: Number,
-        PMSEffect: Number
+      fullMoonEffect: Number,
+      retrogradeEffect: Number,
+      PMSEffect: Number
     }
   },
-  created(){
-    this.loadSettings();
-},
+  created () {
+    this.loadSettings()
+  },
   methods: {
-      loadSettings(){  
-          /* move if to app level since it'd load before settings, then settings would never be empty */
-          if (localStorage.getItem('settings') == null){
-              // make default?
-              console.log('should make default duh!');
-              this.fullMoonEffect = 1;
-              this.retrogradeEffect = 1;
-              this.PMSEffect = 1;
-          } else {
-              let settings = JSON.parse(localStorage.getItem('settings'));
-              this.fullMoonEffect = settings.fullmoon;
-              this.retrogradeEffect = settings.retrograde;
-              this.PMSEffect = settings.pms;
-          }
-      },
-      saveSettings(){
-        let settings = {
-            'fullmoon':this.fullMoonEffect,
-            'retrograde':this.retrogradeEffect,
-            'pms':this.PMSEffect
-        }
-        localStorage.setItem('settings', JSON.stringify(settings))
+    loadSettings () {
+      /* move if to app level since it'd load before settings, then settings would never be empty */
+      if (localStorage.getItem('settings') == null) {
+        // make default?
+        console.log('should make default duh!')
+        this.fullMoonEffect = 1
+        this.retrogradeEffect = 1
+        this.PMSEffect = 1
+      } else {
+        let settings = JSON.parse(localStorage.getItem('settings'))
+        this.fullMoonEffect = settings.fullmoon
+        this.retrogradeEffect = settings.retrograde
+        this.PMSEffect = settings.pms
       }
+    },
+    saveSettings () {
+      let settings = {
+        'fullmoon': this.fullMoonEffect,
+        'retrograde': this.retrogradeEffect,
+        'pms': this.PMSEffect
+      }
+      localStorage.setItem('settings', JSON.stringify(settings))
+    }
   }
 }
 </script>

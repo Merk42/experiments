@@ -11,18 +11,19 @@ export default {
   name: 'FullMoon',
   data () {
     return {
-      isRetrograde: Boolean
+        isRetrograde: Boolean
     }
   },
-  async created () {
+  async created(){
     // this.isMoonFull();
-    // this.isHardcoded();
-    await this.isMercuryRetrograde()
-  },
-  methods: {
-    isMercuryRetrograde: async function () {
+     // this.isHardcoded();
+    await this.isMercuryRetrograde();
+ },
+  methods: {    
+    isMercuryRetrograde: async function() {
+
       let response = await axios.get('https://mercuryretrogradeapi.com')
-      this.isRetrograde = response.data.is_retrograde
+      this.isRetrograde = response.data.is_retrograde;
       this.$emit('retrogradeEmit', this.isRetrograde)
     }
   }
