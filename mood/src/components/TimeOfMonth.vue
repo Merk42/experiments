@@ -14,10 +14,10 @@ export default {
     }
   },
   async created () {
-    await this.isPMS()
+    await this.isItPMS()
   },
   methods: {
-    isPMS: async function () {
+    isItPMS: async function () {
       // let response = await axios.get('https://mercuryretrogradeapi.com')
       this.isPMS = false
       this.$emit('pmsEmit', false)

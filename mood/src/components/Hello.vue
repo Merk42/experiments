@@ -59,7 +59,7 @@ export default {
       // this.isRetrograde = value
       // return value;
       console.log('event is', $event)
-      this.isFull = $event
+      this.isRetrograde = $event
       this.countDumb()
     },
     checkPMS ($event) {
