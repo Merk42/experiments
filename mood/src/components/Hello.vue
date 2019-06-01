@@ -2,7 +2,7 @@
   <div id="app" v-bind:class="CSSStyle"> 
     <header v-bind:class="{ menu: configuring }">
       <button v-on:click="toggleConfig()" id="menuButton">menu</button>
-      <h1>Level: {{CSSStyle}}</h1>
+      <h1>Risk: {{CSSStyle}}</h1>
     </header>
     <main>
       <p>({{threatLevel}} out of {{maxLevel}})</p>
@@ -12,7 +12,7 @@
     </main>
     <div id="closeMenu" v-on:click="toggleConfig()"></div>
     <aside>
-      <Config></Config>
+      <Config @save="countDumb();toggleConfig()"></Config>
     </aside>
   </div>
 </template>

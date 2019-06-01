@@ -26,7 +26,8 @@ label{
   font-family:sans-serif
 }
 #app{
-  height:100vh
+  height:100vh;
+  transition: all .25s;
 }
 #app.low{
   background-color:lightgreen;

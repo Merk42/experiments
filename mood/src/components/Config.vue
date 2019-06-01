@@ -56,6 +56,7 @@ export default {
         'pms': this.PMSEffect
       }
       localStorage.setItem('settings', JSON.stringify(settings))
+      this.$emit('save')
     }
   }
 }
