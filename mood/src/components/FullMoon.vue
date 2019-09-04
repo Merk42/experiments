@@ -22,7 +22,7 @@ export default {
       var d = new Date()
       var date = d.getDate()
       var month = d.getMonth() + 1
-      var year = d.getFullYear();
+      var year = d.getFullYear()
       /*
       let response = await axios.get('http://icalendar37.net/lunar/api/?lang=en&month=' + month + '&year=' + year + '&size=50')
       this.info = response.data
@@ -40,13 +40,13 @@ export default {
         if (this.info.curphase === 'Full Moon') {
           this.isFull = true
         } else {
-          this.isFull = false;
+          this.isFull = false
         }
       } else {
         if (this.info.closestphase.phase === 'Full Moon') {
-          this.isFull = true;
+          this.isFull = true
         } else {
-          this.isFull = false;
+          this.isFull = false
         }
       }
       this.$emit('fullEmit', this.isFull)
